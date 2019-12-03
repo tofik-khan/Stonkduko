@@ -1,6 +1,7 @@
 class Table {
-	const SOLID = 0; //flag for solid input, user's input goes to userArray
+	const MANUAL = 0; //flag for solid input, user's input goes to userArray
 	const SEMI_AUTO = 1; //flag for pencil input, user's input goes to pencilArray
+	const PENCILED = 2; 
 
 	const GOOD = 1; //flag for when element of userArray matches the corresponding element of elementArray
 	const BAD = 0; //flag for when element of userArray doesn't match the corresponding element of the elementArray
@@ -18,7 +19,7 @@ class Table {
 		//Cub-Cub's code goes here...
 	}
 
-	validate(){
+	validate() {
 		/* Take the elementArray and compare that to the userArray,
 		 it then returns an array with GOOD or BAD depending on
 		 whether user's input matched the elementArray */
@@ -31,5 +32,13 @@ class Table {
 		 		returnArray.push(BAD);
 		 	}
 		 }
+	}
+
+	setInput(userinput, location) {
+		if (this.inputFlag == SOLID) {
+			elementArray[location] = userinput;
+		}
+
+
 	}
 }
