@@ -70,11 +70,11 @@ class StonkTable {
 	}
 
 	setInput(userinput, location) {
-		if (this.inputFlag == MANUAL) {
+		if (this.inputFlag == this.MANUAL) {
 			//If the flag is set to Manual, enter input in elementArray
 			elementArray[location] = userinput;
 		}
-		else if (userinput == PENCILED) {
+		else if (this.inputFlag == this.PENCILED) {
 			//If the flag is set to Penciled, enter input in pencilArray
 			pencilArray[location].push(this.selectedNumber);
 		}
