@@ -8,7 +8,7 @@ class Table {
 
 	constructor ()
 	{
-		this.elementArray[81] = generatePuzzle(); //creates an unambiguous solved puzzle
+		this.elementArray[81] = makePuzzle(); //creates an unambiguous solved puzzle
 		this.userArray[81]; //stores the user's selected solutions
 		this.pencilArray[81][9]; //stores user's penciled numbers for each cell on table
 		this.inputFlag = MANUAL; //Start in solid input
@@ -17,9 +17,6 @@ class Table {
 
 	}
 
-	generatePuzzle(){
-		//Cub-Cub's code goes here...
-	}
 
 	validate() {
 		/* Take the elementArray and compare that to the userArray,
