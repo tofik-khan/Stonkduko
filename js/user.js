@@ -2,17 +2,20 @@ class User {
 	constructor (name) {
 		this.username = name;
 		this.difficulty	= getDifficulty();
-		this.userTable = Table ();
+		this.userTable = new StonkTable ();
 
-		this.startNewGame(this.userTable, this.difficulty)
+		this.startNewGame();
 
 	}
 
 	getDifficulty() {
 		//sets the difficulty for the user
+
+		return; //change to return variable difficulty.
 	}
 
-	startNewGame(table, difficulty) {
+	startNewGame() {
+		this.userTable.initialTableFill(this.difficulty);
 
 		var score = 0;
 
