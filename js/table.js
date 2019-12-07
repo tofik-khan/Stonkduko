@@ -79,4 +79,13 @@ class StonkTable {
 			pencilArray[location].push(this.selectedNumber);
 		}
 	}
+
+	checkWin() {
+		for (var i = 0; i < this.userArray.length; i++) {
+			if (this.userArray[i] != this.elementArray[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
 }
