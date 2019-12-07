@@ -11,7 +11,7 @@ class User {
 	getDifficulty() {
 		//sets the difficulty for the user
 
-		return; //change to return variable difficulty.
+		return 0; //change to return variable difficulty.
 	}
 
 	startNewGame() {
