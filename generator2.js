@@ -165,10 +165,23 @@ function fillRemaining(i, j) {
   return false;
 }
 
-fillBox(0, 0);
-fillBox(3, 3);
-fillBox(6, 6);
-console.log(puzzleArray);
-console.log("---------------------------------------------------");
-console.log(fillRemaining(0, 3));
-console.log(puzzleArray);
+function makePuzzle(){
+  fillBox(0, 0);
+  fillBox(3, 3);
+  fillBox(6, 6);
+  fillRemaining(0,3);
+  const mappedArray = [];
+  let i = 0;
+  let j = 0;
+  while (i < 9){
+    while(j < 9){
+      mappedArray.push(puzzleArray[i][j]);
+      j++
+    }
+    j=0;
+    i++;
+  }
+  return mappedArray;
+}
+
+console.log(makePuzzle());
