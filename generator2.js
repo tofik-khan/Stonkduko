@@ -1,27 +1,31 @@
-let puzzleArray = [];
-let rows = 9;
-let columns = 9;
-let N = 9;
-let SRN = 3;
-fill2DimensionsArray(puzzleArray, rows, columns);
+//Caleb Hallier
+//CSE320
+//Runtime Terror
+//12-6/2019
 
-function fill2DimensionsArray(arr, rows, columns) {
-  for (let i = 0; i < rows; i++) {
-    arr.push([0]);
-    for (let j = 0; j < columns; j++) {
-      arr[i][j] = 0;
-    }
+//The following lines set the elements of a 9x9 array to 0;
+let puzzleArray = [];
+let row = 0;
+let col = 0;
+while(row < 9){
+  puzzleArray.push([0]); //push an array onto the stack, these are the rows
+  while (col < 9){
+    puzzleArray[row][col] = 0; //populate the values of our rows column by column.
+    col++;
   }
+  row++; //move to next row.
+  col = 0; //reset column
 }
 
+//The following function takes the coordinates to the top right corner of a box and then fills the box randomly.
 function fillBox(cord1, cord2) {
   let row = cord1;
   let col = cord2;
-  while (row < (cord1 + 3)) {
+  while (row < (cord1 + 3)) { //keeps us inside our box
     let x = Math.floor((Math.random() * 9) + 1);
     while (col < cord2 + 3) {
-      if (!checkBox(x, row, col)) {
-        x = Math.floor((Math.random() * 9) + 1);
+      if (!checkBox(x, row, col)) { // Calls the check box function to see if the number already appeared in the box
+        x = Math.floor((Math.random() * 9) + 1); // Fill the box with random numbers.
       } else {
         puzzleArray[row][col] = x;
         col++;
@@ -36,21 +40,21 @@ function checkRow(num, row) {
   let k = 0;
   while (k < 9) {
     if (puzzleArray[row][k] === num) {
-      return (false); //unsafe
+      return false; //unsafe
     }
     k++;
   }
-  return (true); //safe
+  return true; //safe
 }
 
 function checkColumn(num, column) {
   let k = 0;
   while (k < 9) {
     if (puzzleArray[k][column] === num)
-      return (false); //unsafe
+      return false; //unsafe
     k++;
   }
-  return (true); //safe
+  return true; //safe
 }
 
 function checkBox(num, row, col) {
@@ -126,7 +130,7 @@ function checkBox(num, row, col) {
 }
 
 function checkIfSafe(row, col, num) {
-  if (puzzleArray[row][col] != 0){
+  if (puzzleArray[row][col] !== 0){
     return false;
   }
   return (checkColumn(num, col) && checkRow(num, row) && checkBox(num, row, col));
