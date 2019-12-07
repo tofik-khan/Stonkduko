@@ -1,15 +1,15 @@
 //Caleb Hallier
 //CSE320
 //Runtime Terror
-//12-6/2019
+//12-6-2019
 
 //The following lines set the elements of a 9x9 array to 0;
 let puzzleArray = [];
 let row = 0;
 let col = 0;
-while(row < 9){
+while (row < 9) {
   puzzleArray.push([0]); //push an array onto the stack, these are the rows
-  while (col < 9){
+  while (col < 9) {
     puzzleArray[row][col] = 0; //populate the values of our rows column by column.
     col++;
   }
@@ -37,7 +37,7 @@ function fillBox(cord1, cord2) {
 }
 
 function checkRow(num, row) { // all this does is check all the elements in the current row.
-                              // returns true if it is a safe cell
+  // returns true if it is a safe cell
   let k = 0;
   while (k < 9) {
     if (puzzleArray[row][k] === num) {
@@ -49,7 +49,7 @@ function checkRow(num, row) { // all this does is check all the elements in the 
 }
 
 function checkColumn(num, column) { // all this does is check all the elements in a given column.
-                                    // returns true if it is a safe cell
+  // returns true if it is a safe cell
   let k = 0;
   while (k < 9) {
     if (puzzleArray[k][column] === num)
@@ -135,7 +135,7 @@ function checkBox(num, row, col) {
 }
 
 function checkIfSafe(row, col, num) {
-  if (puzzleArray[row][col] !== 0){ // first check if the current cell is already filled
+  if (puzzleArray[row][col] !== 0) { // first check if the current cell is already filled
     return false;
   }
   return (checkColumn(num, col) && checkRow(num, row) && checkBox(num, row, col));
@@ -149,15 +149,15 @@ function fillRemaining(i, j) { // this function recursively fills the remaining 
 
   // We do not want to attempt to enter values into boxes 1, 5 or 9.
   // To avoid this we first check what range we are in so we can avoid those boxes.
-  if(i < 3 && j === 0){ // check if we are going to attempt entering in box 1.
+  if (i < 3 && j === 0) { // check if we are going to attempt entering in box 1.
     j = j + 3;
   }
-  if(i < 6 && i > 2 && j === 3 ) { // check if we are attempting to entering in box 5.
+  if (i < 6 && i > 2 && j === 3) { // check if we are attempting to entering in box 5.
     j = j + 3;
   }
   if (i === 8 && j === 6) // If we reach this location the puzzle is completed.
     return true; // start to recurse up.
-  if(i > 5 && j === 6){ // check if we are trying to enter box 6.
+  if (i > 5 && j === 6) { // check if we are trying to enter box 6.
     i++;
     j = 0;
   }
@@ -169,7 +169,7 @@ function fillRemaining(i, j) { // this function recursively fills the remaining 
   for (let num = 1; num <= 9; num++) {
     if (checkIfSafe(i, j, num)) {
       puzzleArray[i][j] = num;
-      if (fillRemaining(i,j + 1))
+      if (fillRemaining(i, j + 1))
         return true; // we found a number that fits, so we recurse up.
       puzzleArray[i][j] = 0;
     }
@@ -178,22 +178,21 @@ function fillRemaining(i, j) { // this function recursively fills the remaining 
 }
 
 // The following function puts it all together and maps the two dimensional array to a one dimensional array.
-function makePuzzle(){
+function makePuzzle() {
   fillBox(0, 0);
   fillBox(3, 3);
   fillBox(6, 6);
-  fillRemaining(0,3);
+  fillRemaining(0, 3);
   const mappedArray = [];
   let i = 0;
   let j = 0;
-  while (i < 9){
-    while(j < 9){
+  while (i < 9) {
+    while (j < 9) {
       mappedArray.push(puzzleArray[i][j]);
       j++
     }
-    j=0;
+    j = 0;
     i++;
   }
   return mappedArray;
 }
-
