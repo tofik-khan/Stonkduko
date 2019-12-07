@@ -17,7 +17,6 @@
 <button type="button" onclick="myFunction()">Click Me!</button>
 
 
-
 <table style="width: 500px; text-align: center">
 	<tr>
 		<th>_</th>
@@ -191,12 +190,20 @@
 	</tr>
 </table>
 
+<br>
+<form>
+	<input type="text" id="userinput" placeholder="userinput">
+<input type="text" id="location" placeholder="location">
+<button type="button" onclick="setInput(document.getElementById('userinput').value, document.getElementById('location').value)">Submit</button>
+</form>
+
+
 
 
 <script>
 function myFunction() { 
-	var testTable = new StonkTable();
-	testTable.initialTableFill(0);
+	testTable = new StonkTable();
+	testTable.initialTableFill(4);
 
 	
 
@@ -293,6 +300,11 @@ function myFunction() {
 
 
 }
+
+function setInput(val, loc) {
+	document.getElementById(loc).innerHTML = val;
+}
+
 </script>
 
 </body>
