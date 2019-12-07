@@ -132,41 +132,6 @@ function checkIfSafe(row, col, num) {
   return (checkColumn(num, col) && checkRow(num, row) && checkBox(num, row, col));
 }
 
-function fillRest(row, col) {
-  let i = 0;
-  let j = 0;
-  let x = Math.floor((Math.random() * 9) + 1);
-  while (i < 9) {
-    while (j < 9) {
-      if (puzzleArray[i][j] === 0) {
-        if (checkIfSafe(i, j, x)) {
-          puzzleArray[i][j] = x;
-          j++;
-          console.log("-----------------------------------------------------")
-          console.log(puzzleArray);
-        } else {
-          x = Math.floor((Math.random() * 9) + 1);
-        }
-      } else {
-        j++;
-      }
-    }
-    j = 0;
-    i++;
-  }
-}
-
-function fillPuzzle(row,col) {
-  if (col === 9 && row == 8){
-    return true;
-  }
-  let num = 1;
-  while (num < 10){
-
-  }
-  return false;
-}
-
 function fillRemaining(i, j) {
   if (j === 9 && i < 8) {
     i++;
