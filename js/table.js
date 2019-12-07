@@ -10,11 +10,45 @@ class StonkTable {
 	{
 		this.elementArray = makePuzzle(); //creates an unambiguous solved puzzle
 		this.userArray = []; //stores the user's selected solutions
+		for (var i = 0; i < 81; i++) {
+			this.userArray.push(0);
+		}
 		this.pencilArray = []; //stores user's penciled numbers for each cell on table
 		this.inputFlag = this.MANUAL; //Start in solid input
 
 		this.selectedNumber = 0; //the number user has selected for semiAuto input
 
+	}
+
+	initialTableFill (difficulty) {
+		var show = 0; //determines the number of elements to show in the user array
+		switch (difficulty) {
+			case 0:
+				show = 51; //30 40 45 50 55
+				break;
+			case 1:
+				show = 41;
+				break;
+			case 2:
+				show = 36;
+				break;
+			case 3:
+				show = 31;
+				break;
+			case 4:
+				show = 26;
+				break;
+		}
+		
+		while (show > 0) {
+			var index = Math.floor(Math.random() * Math.floor(81));
+
+			if (this.userArray[index] == 0) {
+				this.userArray[index] = this.elementArray[index];
+				show--;
+			}
+
+		}
 	}
 
 
@@ -31,6 +65,8 @@ class StonkTable {
 		 		returnArray.push(BAD);
 		 	}
 		 }
+
+		 return returnArray;
 	}
 
 	setInput(userinput, location) {
