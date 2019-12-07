@@ -19,8 +19,9 @@ class User {
 
 		var score = 0;
 
-		while (table.checkFull() == false) {
+		while (this.usertable.checkWin() == false) {
 			//keep playing game
+			
 		}
 
 		
