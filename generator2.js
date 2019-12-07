@@ -36,7 +36,8 @@ function fillBox(cord1, cord2) {
   }
 }
 
-function checkRow(num, row) {
+function checkRow(num, row) { // all this does is check all the elements in the current row.
+                              // returns true if it is a safe cell
   let k = 0;
   while (k < 9) {
     if (puzzleArray[row][k] === num) {
@@ -47,7 +48,8 @@ function checkRow(num, row) {
   return true; //safe
 }
 
-function checkColumn(num, column) {
+function checkColumn(num, column) { // all this does is check all the elements in a given column.
+                                    // returns true if it is a safe cell
   let k = 0;
   while (k < 9) {
     if (puzzleArray[k][column] === num)
@@ -60,6 +62,7 @@ function checkColumn(num, column) {
 function checkBox(num, row, col) {
   let startRow = 0;
   let startCol = 0;
+  // there is a case for each box, the box decides the start location to check.
   //box 1
   if (row < 3 && col < 3) {
     startRow = 0;
@@ -117,54 +120,64 @@ function checkBox(num, row, col) {
   let i = startRow;
   let j = startCol;
 
+  // similar to the fillBox function we iterate through the whole box just checking the values
+  // returns true if the number is not in the box and false if it is in the box.
   while (j < (startCol + 3)) {
     while (i < (startRow + 3)) {
       if (puzzleArray[i][j] === num)
-        return false; //indicate that this is not a safe location for the given num
+        return false; // indicate that this is not a safe location for the given num
       i++
     }
     i = startRow;
     j++;
   }
-  return true; //indicate that it is safe to input number.
+  return true; // indicate that it is safe to input number.
 }
 
 function checkIfSafe(row, col, num) {
-  if (puzzleArray[row][col] !== 0){
+  if (puzzleArray[row][col] !== 0){ // first check if the current cell is already filled
     return false;
   }
   return (checkColumn(num, col) && checkRow(num, row) && checkBox(num, row, col));
 }
 
-function fillRemaining(i, j) {
-  if (j === 9 && i < 8) {
+function fillRemaining(i, j) { // this function recursively fills the remaining 6 boxes
+  if (j === 9 && i < 8) { // check if we need to move to the next row.
     i++;
     j = 0;
   }
 
-  if(i < 3 && j === 0){
+  // We do not want to attempt to enter values into boxes 1, 5 or 9.
+  // To avoid this we first check what range we are in so we can avoid those boxes.
+  if(i < 3 && j === 0){ // check if we are going to attempt entering in box 1.
     j = j + 3;
   }
-  if(i < 6 && i > 2 && j === 3 ) {
+  if(i < 6 && i > 2 && j === 3 ) { // check if we are attempting to entering in box 5.
     j = j + 3;
   }
-  if (i === 8 && j === 6)
-    return true;
-  if(i > 5 && j === 6){
+  if (i === 8 && j === 6) // If we reach this location the puzzle is completed.
+    return true; // start to recurse up.
+  if(i > 5 && j === 6){ // check if we are trying to enter box 6.
     i++;
     j = 0;
   }
+
+  /*
+   The following bit of code will recursively and systematically check every possible solution until one is found
+   that will satisfy our puzzle.
+   */
   for (let num = 1; num <= 9; num++) {
     if (checkIfSafe(i, j, num)) {
       puzzleArray[i][j] = num;
       if (fillRemaining(i,j + 1))
-        return true;
+        return true; // we found a number that fits, so we recurse up.
       puzzleArray[i][j] = 0;
     }
   }
-  return false;
+  return false; // we recurse up indicating failure.
 }
 
+// The following function puts it all together and maps the two dimensional array to a one dimensional array.
 function makePuzzle(){
   fillBox(0, 0);
   fillBox(3, 3);
@@ -184,4 +197,3 @@ function makePuzzle(){
   return mappedArray;
 }
 
-console.log(makePuzzle());
