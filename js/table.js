@@ -69,14 +69,15 @@ class StonkTable {
 		 return returnArray;
 	}
 
-	setInput(userinput, location) {
+	setInput(userinput, coordinate, index) {
 		if (this.inputFlag == this.MANUAL) {
 			//If the flag is set to Manual, enter input in elementArray
-			elementArray[location] = userinput;
+			this.userArray[index] = userinput; //update user array
+			document.getElementById(coordinate).value = userinput; //update html table
 		}
 		else if (this.inputFlag == this.PENCILED) {
 			//If the flag is set to Penciled, enter input in pencilArray
-			pencilArray[location].push(this.selectedNumber);
+			this.pencilArray[location].push(this.selectedNumber);
 		}
 	}
 
