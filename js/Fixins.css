@@ -1,0 +1,268 @@
+#pic {
+  margin-left: 45%;
+  width: 10%;
+}
+
+.menuButton {
+  background-color: #eb5e7c;
+  border-radius: 8px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial, serif;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 13px 32px;
+  text-decoration: none;
+  outline: none;
+  margin: 3px 35%;
+  width: 30%;
+}
+
+.menuButton:hover {
+  background-color: #f0718c;
+}
+
+.menuButton:active {
+  background-color: #d6546f;
+}
+
+#arrows {
+  white-space: nowrap;
+  width: 30%;
+  margin: 3px 35%;
+}
+
+#diffEasy {
+  padding: 13px 0;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  width: 4.5%;
+  margin: 0 .5% 3px 35%;
+}
+
+#diffHard {
+  padding: 13px 0;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  width: 4.5%;
+  margin: 0 0 0 .5%;
+}
+
+.menuText {
+  width: 30%;
+  text-align: center;
+  margin: 3px 35%;
+}
+
+#diff {
+  padding: 13px 0;
+  background-color: #eb5e7c;
+  text-align: center;
+  color: #ffffff;
+  font-family: Arial, serif;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 3px;
+  width: 20%;
+  border: none;
+}
+
+#settingBox {
+  width: 30%;
+  background-color: #f7e6f1;
+  margin: 0 35%;
+  height: 0;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  transition: height 0.4s ease .2s;
+}
+
+#sett {
+  margin-bottom: 0;
+}
+
+p {
+  margin: 0 10% 0 0;
+  padding: 20px 0 0 0;
+  display: inline-block;
+  font-family: Arial, serif;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: right;
+  width: 45%;
+}
+
+#fader {
+  transition: opacity .4s ease;
+  opacity: 0;
+}
+
+input {
+  display: inline-block;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #eb5e7c;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #bd4d95;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#theeGame {
+  background-color: white;
+  border: solid 4px #eb5e7c;
+  border-radius: 6px 30px 30px 30px;
+  width: 84%;
+  margin: 0 0 0 8%;
+  position: absolute;
+  top: 0;
+  display: none;
+}
+
+#gBack {
+  background-color: #eb5e7c;
+  padding: 0 14px 4px 8px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: "Courier New", serif;
+  font-size: 26px;
+  font-weight: bold;
+  text-decoration: none;
+  outline: none;
+  border-bottom-right-radius: 6px;
+}
+
+#gBack:hover {
+  background-color: #f0718c;
+}
+
+#gBack:active {
+  background-color: #d6546f;
+}
+
+td {
+  background-color: transparent;
+  border-radius: 50%;
+  padding: 2px;
+  margin: 0;
+  text-align: center;
+  color: #5c4b4f;
+  font-size: 18px;
+  font-family: Arial, serif;
+  font-weight: bold;
+}
+
+#board {
+  width: 32%;
+  margin: 40px 0 0 34%;
+  background-image: url('boardBack.png');
+  background-size: cover;
+}
+
+#npt {
+  width: 20%;
+  margin: 30px 0 40px 41%;
+  height: 70px;
+}
+
+#pen {
+  height: 20px;
+  width: 20px;
+  color: white;
+  margin-top: 4px;
+}
+
+.nums {
+  background-color: #eb5e7c;
+  padding: 4px 12px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: "Courier New", serif;
+  font-size: 26px;
+  font-weight: bold;
+  text-decoration: none;
+  outline: none;
+  border-radius: 50%;
+  margin: 2px 1px;
+}
+
+.nums:hover {
+  background-color: #f0718c;
+}
+
+.nums:active {
+  background-color: #d6546f;
+}
+
+#check {
+  width: 20px;
+  margin-top: 5px;
+}
+
+#tools {
+  vertical-align: top;
+  margin-left: 8px;
+}
+
+.in-butt {
+  background-color: white;
+  border: none;
+  margin: 0;
+}
