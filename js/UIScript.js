@@ -2,6 +2,7 @@
 
 var selected;
 var bSelected;
+let player;
 
 var tab = document.getElementById("board");
 var nbt = document.getElementById("npt");
@@ -62,8 +63,18 @@ var gBack = document.getElementById("gBack");
 
 play.onclick = function () {
   game.style.display = "block";
-  play.textContent = "Resume";
   tab.style.height = tab.clientWidth + "px";
+
+  if (play.textContent == "Start Game") {
+    player = new User(diffCounter);
+    player.startNewGame();
+
+    fillTable();
+
+  }
+  
+  play.textContent = "Resume";
+
 };
 
 gBack.onclick = function () {
@@ -109,6 +120,10 @@ for (i = 0; i < ins.length; i++) {
   });
 }
 
-
-//f7bcc9 rc
-//f5b0bf sel
+function fillTable () {
+  for (var i=0; i < cells.length; i++) {
+    if (player.userTable.userArray[i] != 0) {
+      cells[i].textContent = player.userTable.userArray[i];
+    }
+  }
+}
