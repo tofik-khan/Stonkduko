@@ -1,42 +1,61 @@
 //This id a script that controls the UI
+console.log("O  /\\/\\/->");
+console.log("|  STONKS");
 
-var selected;
-var bSelected;
+let selected;
+let bSelected;
 let player;
 
-var tab = document.getElementById("board");
-var nbt = document.getElementById("npt");
+let tab = document.getElementById("board");
+let nbt = document.getElementById("npt");
 
-var diffs = ["Easy", "Medium", "Hard", "Expert", "Insane"];
-var diffCounter = 1;
+let diffs = ["Easy", "Medium", "Hard", "Expert", "Insane"];
+let diffCounter = 1;
 
-var diffDown = document.getElementById("diffEasy");
-var diffUp = document.getElementById("diffHard");
-var diff = document.getElementById("diff");
+let diffDown = document.getElementById("diffEasy");
+let diffUp = document.getElementById("diffHard");
+let diff = document.getElementById("diff");
+
+
+
+//// Select Difficulty ////
 
 diffUp.onclick = function () {
   diffCounter++;
+
   if (diffCounter === 5) {
     diffCounter = 0;
+
   }
+
   diff.textContent = diffs[diffCounter];
+
 };
 
 diffDown.onclick = function () {
   diffCounter--;
+
   if (diffCounter === -1) {
     diffCounter = 4;
+
   }
+
   diff.textContent = diffs[diffCounter];
+
 };
 
-var sett = document.getElementById("sett");
-var setBox = document.getElementById("settingBox");
-var fader = document.getElementById("fader");
 
-var setFlag = 0;
+
+//// Setting Box Animation ////
+
+let sett = document.getElementById("sett");
+let setBox = document.getElementById("settingBox");
+let fader = document.getElementById("fader");
+
+let setFlag = 0;
 
 sett.onclick = function () {
+
   if (setFlag === 0) {
     setBox.style.height = "200px";
     setFlag = 1;
@@ -54,12 +73,17 @@ sett.onclick = function () {
     sett.style.borderBottomLeftRadius = "8px";
     fader.style.opacity = "0";
     setBox.style.transitionDelay = ".4s";
+
   }
 };
 
-var play = document.getElementById("go");
-var game = document.getElementById("theeGame");
-var gBack = document.getElementById("gBack");
+
+
+//// Start Game ////
+
+let play = document.getElementById("go");
+let game = document.getElementById("theeGame");
+let gBack = document.getElementById("gBack");
 
 play.onclick = function () {
   game.style.display = "block";
@@ -68,62 +92,204 @@ play.onclick = function () {
   if (play.textContent == "Start Game") {
     player = new User(diffCounter);
     player.startNewGame();
-
     fillTable();
 
   }
-  
+
   play.textContent = "Resume";
 
 };
 
+
+
+//// Back to Menu ////
+
 gBack.onclick = function () {
   game.style.display = "none";
+
 };
+
+
+
+//// Fixes Table when Resized ////
 
 window.onresize = function () {
   tab.style.height = tab.clientWidth + "px";
+
 };
 
-var cells = document.getElementsByClassName("cell");
-var i;
 
-for (i = 0; i < cells.length; i++) {
+
+//// Game Play and Input ////
+
+//init table cells
+let cells = document.getElementsByClassName("cell");
+let i;
+
+for (let i = 0; i < cells.length; i++) {
   cells[i].addEventListener("click", function(e){
-    if (e.target.style.backgroundColor !== 'rgb(247, 230, 241)') {
-      e.target.style.backgroundColor = "#f7e6f1";
-      if (selected != null) {
-        selected.style.backgroundColor = "transparent";
-      }
-      selected = e.target;
-    }else {
-      e.target.style.backgroundColor = "transparent";
-      selected = null;
-    }
+    checkCellInput(e);
+
   });
 }
 
-var ins = document.getElementsByClassName("nums");
+//init input buttons
+let ins = document.getElementsByClassName("nums");
 
-for (i = 0; i < ins.length; i++) {
+for (let i = 0; i < ins.length; i++) {
   ins[i].addEventListener("click", function (e) {
-    if (e.target.style.backgroundColor !== 'rgb(166, 99, 114)') {
-      e.target.style.backgroundColor = "#a66372";
-      if (bSelected != null) {
-        bSelected.style.backgroundColor = "#eb5e7c";
-      }
-      bSelected = e.target;
-    }else {
-      e.target.style.backgroundColor = "#eb5e7c";
-      bSelected = null;
-    }
+    checkButtonInput(e);
+
   });
 }
 
+
+
+//// Winning ////
+
+let win = document.getElementById("val");
+
+win.onclick = function () {
+
+  if (player.userTable.checkWin()) {
+    initiateStonks();
+
+  }
+};
+
+//// Functions ////
+
+let solid = [];
+
+//init game board
 function fillTable () {
-  for (var i=0; i < cells.length; i++) {
+
+  for (let i=0; i < cells.length; i++) {
+
     if (player.userTable.userArray[i] != 0) {
       cells[i].textContent = player.userTable.userArray[i];
+      solid[i] = 0;
+
+    }else {
+      solid[i] = 1;
+
     }
   }
+}
+
+let manSel = null;
+let semSel = null;
+let semCellSel = null;
+let semi = 0;
+let arraySpot = null;
+
+//handles "manual" input method
+function checkCellInput (e) {
+
+  if (semi == 0) {
+
+    if (manSel != e.target) {
+      console.log("engage maual mode");
+
+      if (manSel != null) {
+        manSel.style.backgroundColor = "transparent";
+
+      }
+
+      manSel = e.target;
+      manSel.style.backgroundColor = "#f7e6f1";
+
+    }else {
+      console.log("disengage manual mode");
+      manSel.style.backgroundColor = "transparent";
+      manSel = null;
+    }
+
+  }else { 
+    console.log("input num");
+    if (checkSolidNum(e.target)){
+      e.target.textContent = semi;
+      player.userTable.userArray[arraySpot] = semi;
+
+      if (semCellSel != null) {
+        semCellSel.style.backgroundColor = "transparent";
+        semCellSel = e.target;
+        semCellSel.style.backgroundColor = "#f7e6f1";
+
+      }else {
+        semCellSel = e.target;
+        semCellSel.style.backgroundColor = "#f7e6f1";
+
+      }
+    }
+  }
+}
+
+//handles "semi-auto" input method
+function checkButtonInput (e) {
+
+  if (manSel == null) {
+    
+    if (semSel != e.target) {
+      console.log("engage semi mode");
+
+      if (semSel != null) {
+        semSel.style.backgroundColor = "#eb5e7c";
+
+      }
+
+      semSel = e.target;
+      semSel.style.backgroundColor = "#a66372";
+      semi = semSel.value;
+
+    }else {
+      console.log("disengage semi mode");
+      semSel.style.backgroundColor = "#eb5e7c";
+      semSel = null;
+      semi = 0;
+
+      if (semCellSel != null) {
+        semCellSel.style.backgroundColor = "transparent";
+        semCellSel = null;
+
+      }
+    }
+
+  }else {
+    console.log("input num");
+    if (checkSolidNum(manSel)){
+      manSel.textContent = e.target.value;
+      player.userTable.userArray[arraySpot] = e.target.value;
+
+    }
+  }
+}
+
+function checkSolidNum (e) {
+
+  for (let i = 0; i < cells.length; i++){
+
+    if (e == cells[i]) {
+      arraySpot = i;
+      return(solid[i]);
+
+    }
+  }
+}
+
+function initiateStonks () {
+
+  for (let i = 27; i < 54; i++) {
+    cells[i].textContent = "+";
+
+  }
+
+  cells[37].textContent = "S";
+  cells[38].textContent = "T";
+  cells[39].textContent = "O";
+  cells[40].textContent = "N";
+  cells[41].textContent = "K";
+  cells[42].textContent = "S";
+  cells[43].textContent = "!";
+
 }

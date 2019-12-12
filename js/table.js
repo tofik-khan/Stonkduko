@@ -1,6 +1,6 @@
 class StonkTable {
-	MANUAL = 0; //flag for solid input, user's input goes to userArray
-	SEMI_AUTO = 1; //flag for semi auto; user can select multiple cells for input
+	MANUAL = null; //flag for solid input, user's input goes to userArray
+	SEMI_AUTO = 0; //flag for semi auto; user can select multiple cells for input
 	PENCILED = 2;  //flag for penciled input. input will go to pencilArray
 
 	GOOD = 1; //flag for when element of userArray matches the corresponding element of elementArray
