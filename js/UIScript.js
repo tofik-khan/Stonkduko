@@ -189,7 +189,7 @@ function checkCellInput (e) {
   if (semi == 0) {
 
     if (manSel != e.target) {
-      console.log("engage maual mode");
+      //console.log("engage maual mode");
 
       if (manSel != null) {
         manSel.style.backgroundColor = "transparent";
@@ -200,13 +200,15 @@ function checkCellInput (e) {
       manSel.style.backgroundColor = "#f7e6f1";
 
     }else {
-      console.log("disengage manual mode");
+      //console.log("disengage manual mode");
       manSel.style.backgroundColor = "transparent";
       manSel = null;
+      
     }
 
   }else { 
-    console.log("input num");
+    //console.log("input num");
+
     if (checkSolidNum(e.target)){
       e.target.textContent = semi;
       player.userTable.userArray[arraySpot] = semi;
@@ -231,7 +233,7 @@ function checkButtonInput (e) {
   if (manSel == null) {
     
     if (semSel != e.target) {
-      console.log("engage semi mode");
+      //console.log("engage semi mode");
 
       if (semSel != null) {
         semSel.style.backgroundColor = "#eb5e7c";
@@ -243,7 +245,7 @@ function checkButtonInput (e) {
       semi = semSel.value;
 
     }else {
-      console.log("disengage semi mode");
+      //console.log("disengage semi mode");
       semSel.style.backgroundColor = "#eb5e7c";
       semSel = null;
       semi = 0;
@@ -256,7 +258,8 @@ function checkButtonInput (e) {
     }
 
   }else {
-    console.log("input num");
+    //console.log("input num");
+
     if (checkSolidNum(manSel)){
       manSel.textContent = e.target.value;
       player.userTable.userArray[arraySpot] = e.target.value;
