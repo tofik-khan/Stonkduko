@@ -73,7 +73,7 @@ class StonkTable {
 		if (this.inputFlag == this.MANUAL) {
 			//If the flag is set to Manual, enter input in elementArray
 			this.userArray[index] = userinput; //update user array
-			document.getElementById(coordinate).value = userinput; //update html table
+			document.getElementById(coordinate).value = userinput; //update HTML table
 		}
 		else if (this.inputFlag == this.PENCILED) {
 			//If the flag is set to Penciled, enter input in pencilArray
