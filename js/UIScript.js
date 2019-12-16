@@ -89,7 +89,7 @@ play.onclick = function () {
   game.style.display = "block";
   tab.style.height = tab.clientWidth + "px";
 
-  if (play.textContent == "Start Game") {
+  if (play.textContent === "Start Game") {
     player = new User(diffCounter);
     player.startNewGame();
     fillTable();
@@ -166,13 +166,13 @@ function fillTable () {
 
   for (let i=0; i < cells.length; i++) {
 
-    if (player.userTable.userArray[i] != 0) {
+    if (player.userTable.userArray[i] !== 0) {
       cells[i].textContent = player.userTable.userArray[i];
+      cells[i].backgroundcolor = "#9932a8";
       solid[i] = 0;
 
     }else {
       solid[i] = 1;
-
     }
   }
 }
@@ -186,9 +186,9 @@ let arraySpot = null;
 //handles "manual" input method
 function checkCellInput (e) {
 
-  if (semi == 0) {
+  if (semi === 0) {
 
-    if (manSel != e.target) {
+    if (manSel !== e.target) {
       //console.log("engage maual mode");
 
       if (manSel != null) {
@@ -201,7 +201,7 @@ function checkCellInput (e) {
 
     }else {
       //console.log("disengage manual mode");
-      manSel.style.backgroundColor = "transparent";
+      manSel.style.backgroundColor = "transparen t";
       manSel = null;
       
     }
@@ -232,7 +232,7 @@ function checkButtonInput (e) {
 
   if (manSel == null) {
     
-    if (semSel != e.target) {
+    if (semSel !== e.target) {
       //console.log("engage semi mode");
 
       if (semSel != null) {
@@ -272,7 +272,7 @@ function checkSolidNum (e) {
 
   for (let i = 0; i < cells.length; i++){
 
-    if (e == cells[i]) {
+    if (e === cells[i]) {
       arraySpot = i;
       return(solid[i]);
 
